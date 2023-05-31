@@ -6,19 +6,32 @@ const Landing = () => {
   const [btn, setBtn] = useState(false);
 
   useEffect(() => {
-    refWolverine.current.classList.add("startingImg");
+    refWolverine.current.classList.add("startingImg");    
+
     setTimeout(() => {
       refWolverine.current.classList.remove("startingImg");
       setBtn(true);
     }, 1000);
   }, []);
 
+  const setLeftImg = () => {
+    refWolverine.current.classList.add('leftImg');
+  }
+
+  const setRightImg = () => {
+    refWolverine.current.classList.add('rightImg');
+  }
+
+  const clearImg = () => {
+    refWolverine.current.classList.remove("leftImg", "rightImg");
+  }
+
   const displayBtns = btn && (
     <Fragment>
-      <div className="leftBox">
+      <div onMouseOver={setLeftImg} onMouseOut={clearImg} className="leftBox">
         <button className="btn-welcome">Inscription</button>
       </div>
-      <div className="rightBox">
+      <div onMouseOver={setRightImg} onMouseOut={clearImg} className="rightBox">
         <button className="btn-welcome">Connexion</button>
       </div>
     </Fragment>
